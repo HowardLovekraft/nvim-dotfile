@@ -9,11 +9,16 @@ vim.pack.add({
     { src = "https://github.com/ibhagwan/fzf-lua" },
 	-- Подсказки от LSP - blink.cmp
     { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("^1") },
+	-- Зависимость для dashboard-nvim: иконки из NerdFont
+	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
+	-- Красивый start screen  (помогать детям в Уганде все равно важно ♥)
+	{ src = "https://github.com/nvimdev/dashboard-nvim" },
 })
 
 require("tokyonight").setup()
 require("mason").setup()
 require("lualine").setup()
+require("dashboard").setup()
 
 local actions = require('fzf-lua.actions')
 require('fzf-lua').setup({
