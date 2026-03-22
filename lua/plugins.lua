@@ -1,24 +1,31 @@
 vim.pack.add({
 	-- Тема редактора
 	{ src = "https://github.com/folke/tokyonight.nvim" },
+	-- Поддержка treesitter
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	-- Mason - менеджер LSP-серверов
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	-- Статус-лайн внизу
 	{ src = "https://github.com/mason-org/mason.nvim" },
 	-- Fuzzy search
     { src = "https://github.com/ibhagwan/fzf-lua" },
-	-- Подсказки от LSP - blink.cmp
+	-- Подсказки от LSP
     { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("^1") },
-	-- Зависимость для dashboard-nvim: иконки из NerdFont
-	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	-- Красивый start screen  (помогать детям в Уганде все равно важно ♥)
-	{ src = "https://github.com/nvimdev/dashboard-nvim" },
+	-- Падает с ошибкой использования Telescope :\
+	-- { src = "https://github.com/nvimdev/dashboard-nvim" },
+	-- Красивый менеджер файлов
+	{ src = 'https://github.com/nvim-neo-tree/neo-tree.nvim', version = vim.version.range('3') },
+	-- Зависимости neo-tree
+	"https://github.com/nvim-lua/plenary.nvim",
+	"https://github.com/MunifTanjim/nui.nvim",
+	-- Зависимость dashboard-nvim и neo-tree
+	"https://github.com/nvim-tree/nvim-web-devicons",
 })
 
 require("tokyonight").setup()
 require("mason").setup()
 require("lualine").setup()
-require("dashboard").setup()
 
 local actions = require('fzf-lua.actions')
 require('fzf-lua').setup({
