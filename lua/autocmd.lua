@@ -1,8 +1,8 @@
 local ag = vim.api.nvim_create_augroup
-
+local new_autocmd = vim.api.nvim_create_autocmd
 local highlight_group = ag('YankHighlight', { clear = true })
 
-vim.api.nvim_create_autocmd('TextYankPost', {
+new_autocmd('TextYankPost', {
     pattern = '*',
     callback = function()
         vim.hl.on_yank({ timeout = 170 })

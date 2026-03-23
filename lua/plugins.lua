@@ -3,7 +3,7 @@ vim.pack.add({
 	{ src = "https://github.com/folke/tokyonight.nvim" },
 	-- Поддержка treesitter
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-	-- Mason - менеджер LSP-серверов
+	-- Менеджер LSP-серверов
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	-- Статус-лайн внизу
 	{ src = "https://github.com/mason-org/mason.nvim" },
@@ -11,11 +11,10 @@ vim.pack.add({
     { src = "https://github.com/ibhagwan/fzf-lua" },
 	-- Подсказки от LSP
     { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("^1") },
-	-- Красивый start screen  (помогать детям в Уганде все равно важно ♥)
-	-- Падает с ошибкой использования Telescope :\
-	-- { src = "https://github.com/nvimdev/dashboard-nvim" },
 	-- Красивый менеджер файлов
 	{ src = 'https://github.com/nvim-neo-tree/neo-tree.nvim', version = vim.version.range('3') },
+	-- Автозакрытие скобок, кавычек
+	{ src = "https://github.com/windwp/nvim-autopairs" },
 	-- Зависимости neo-tree
 	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/MunifTanjim/nui.nvim",
@@ -25,10 +24,17 @@ vim.pack.add({
 
 require("tokyonight").setup()
 require("mason").setup()
-require("lualine").setup()
+require("nvim-autopairs").setup()
+
+require("lualine").setup {
+	sections = {
+		lualine_x = {"diagnostics", "filetype"},
+		lualine_y = {},
+	},
+}
 
 local actions = require('fzf-lua.actions')
-require('fzf-lua').setup({
+require('fzf-lua').setup {
     winopts = { backdrop = 85 },
     keymap = {
         builtin = {
@@ -52,7 +58,7 @@ require('fzf-lua').setup({
             ["enter"]  = actions.file_edit_or_qf,
         }
     }
-})
+}
 
 require('blink.cmp').setup({
     fuzzy = { implementation = 'prefer_rust_with_warning' },
@@ -94,5 +100,9 @@ require('blink.cmp').setup({
     },
 
     sources = { default = { "lsp" } }
+})
+
+require("neo-tree").setup({
+	close_if_last_window = true,
 })
 
