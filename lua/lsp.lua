@@ -1,7 +1,7 @@
-vim.lsp.enable({
+vim.lsp.enable {
 	"lua_ls",
 	"clangd",
 	"basedpyright",
-})
+}
 
-vim.diagnostic.config({ virtual_text = true })
+vim.diagnostic.config{ virtual_text = true }

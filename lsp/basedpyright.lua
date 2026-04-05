@@ -14,6 +14,7 @@ return {
 			analysis = {
 				autoSearchPaths = true,
 				diagnosticMode = 'openFilesOnly',
+				reportUnusedCallResult = 'none'
 			},
 		},
 	},
