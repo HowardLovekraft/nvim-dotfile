@@ -1,10 +1,14 @@
 vim.pack.add({
-	-- Тема редактора
-	{ src = "https://github.com/folke/tokyonight.nvim" },
+	-- Темы редактора
+	"https://github.com/folke/tokyonight.nvim",
+	"https://github.com/shatur/neovim-ayu",
+	"https://github.com/navarasu/onedark.nvim",
 	-- Поддержка treesitter
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	-- Менеджер LSP-серверов
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
+	-- Базовые конфиги для LSP-серверов
+	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	-- Статус-лайн внизу
 	{ src = "https://github.com/mason-org/mason.nvim" },
 	-- Fuzzy search
@@ -15,14 +19,20 @@ vim.pack.add({
 	{ src = 'https://github.com/nvim-neo-tree/neo-tree.nvim', version = vim.version.range('3') },
 	-- Автозакрытие скобок, кавычек
 	{ src = "https://github.com/windwp/nvim-autopairs" },
+	-- Помогает искать keybinds
+	{ src = "https://github.com/folke/which-key.nvim" },
 	-- Зависимости neo-tree
 	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/MunifTanjim/nui.nvim",
 	-- Зависимость dashboard-nvim и neo-tree
-	"https://github.com/nvim-tree/nvim-web-devicons",
+	{ src = "https://github.com/nvim-tree/nvim-web-devicons", version = vim.version.range('^3.3') },
 })
 
+require('onedark').setup{ style = 'darker' }
+require('onedark').load()
+require("ayu").colorscheme()
 require("tokyonight").setup()
+
 require("mason").setup()
 require("nvim-autopairs").setup()
 
@@ -37,6 +47,7 @@ require("lualine").setup {
 }
 
 require("neo-tree").setup({
+	window = { position = "right" },
 	close_if_last_window = true,
 })
 
