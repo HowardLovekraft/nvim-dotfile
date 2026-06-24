@@ -1,11 +1,9 @@
 local function reload_config()
 	-- Clear cache for custom Lua files
 	for name, _ in pairs(package.loaded) do
-		if name:match("^user") or name:match("^init") then
-			package.loaded[name] = nil
-		end
+		package.loaded[name] = nil
 	end
-	
+
 	dofile(vim.env.MYVIMRC)
 	vim.notify("Configuration reloaded!", vim.log.levels.INFO)
 end
