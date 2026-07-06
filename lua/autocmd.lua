@@ -17,7 +17,7 @@ new_autocmd('TextYankPost', {
 -- Настройки отступов для языков
 -- Lua + JSON, YAML
 new_autocmd(FILETYPE, {
-	pattern = {"lua", "json", "yaml"},
+	pattern = { "lua", "json", "yaml" },
 	callback = function()
 		vim.opt_local.tabstop = 2
 		vim.opt_local.shiftwidth = 2
@@ -27,7 +27,7 @@ new_autocmd(FILETYPE, {
 })
 -- C/C++, Python, Rust
 new_autocmd(FILETYPE, {
-	pattern = {"c", "cpp", "python", "rust"},
+	pattern = { "asm", "nasm", "c", "cpp", "h", "hpp", "python", "rust" },
 	callback = function()
 		vim.opt_local.tabstop = 4       -- Пробелы в одном табе
 		vim.opt_local.shiftwidth = 4    -- Пробелы в автоотступе
@@ -37,7 +37,7 @@ new_autocmd(FILETYPE, {
 })
 -- Go
 new_autocmd(FILETYPE, {
-	pattern = {"go"},
+	pattern = { "go" },
 	callback = function()
 		vim.opt_local.tabstop = 4        -- Пробелы в одном табе
 		vim.opt_local.shiftwidth = 4     -- Пробелы в автоотступе

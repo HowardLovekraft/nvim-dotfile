@@ -28,3 +28,6 @@ if vim.fn.has('win32') then
 else  -- Linux :)
 	vim.g.python3_host_prog = python_venv .. 'bin/python'
 end
+
+-- Тема редактора
+vim.cmd.colorscheme("ayu")
