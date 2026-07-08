@@ -1,5 +1,8 @@
 local actions = require('fzf-lua.actions')
-require('fzf-lua').setup {
+local fzf = require('fzf-lua')
+
+-- Сетап
+fzf.setup {
     winopts = { backdrop = 85 },
     keymap = {
         builtin = {

@@ -1,6 +1,8 @@
 local start_time = vim.uv.hrtime()
 
-require("plugins")  -- Plugin list
+require("plugins")  -- Plugin list and settings
+require("themes")   -- Theme selection
+require("lsp")      -- LSP settings (more - at after/lsp)
 require("config")   -- Neovim flags
 require("autocmd")  -- Autocommands
 require("setups")   -- Plugin settings

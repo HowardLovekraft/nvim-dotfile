@@ -1,114 +1,116 @@
----@enum Events
-local Events = {
+---@enum Commands
+local Commands = {
   BufNewFile = "BufNewFile",
   BufReadPre = "BufReadPre",
+  InsertEnter = "InsertEnter",
   VimEnter = "VimEnter",
 }
 
----@enum Commands
-local Commands = {
-  Neotree = "Neotree",
-  Mason = "Mason",
-  FzfLua = "FzfLua",
-  WhichKey = "WhichKey",
-}
 
----@type lz.n.pack.Spec[]
-local plugin_list = {
-	-- Базовые конфиги для LSP-серверов
-  { src = "https://github.com/neovim/nvim-lspconfig" },
-	-- Менеджер LSP-серверов
-  { src = "https://github.com/mason-org/mason.nvim" },
+local plugins = {
+  -- Поддержка treesitter
+  "https://github.com/nvim-treesitter/nvim-treesitter",
+  -- Статус-лайн внизу
+  "https://github.com/nvim-lualine/lualine.nvim",
+  -- Менеджер LSP-серверов
+  "https://github.com/mason-org/mason.nvim",
+  -- Базовые конфиги для LSP-серверов
+  "https://github.com/neovim/nvim-lspconfig",
   -- Связка nvim-lspconfig и Mason
-  { src = "https://github.com/mason-org/mason-lspconfig.nvim" },
-	-- Статус-лайн внизу
-  { src = "https://github.com/nvim-lualine/lualine.nvim" },
-	-- Поддержка treesitter
-  {
-    src = "https://github.com/nvim-treesitter/nvim-treesitter",
-    data = {
-      event = Events.VimEnter
-    }
-  },
-	-- Fuzzy search
-  {
-    src = "https://github.com/ibhagwan/fzf-lua",
-    data = {
-      cmd = { Commands.FzfLua },
-      after = function()
-        require('plugins.fzf-lua')
-      end
-    }
-  },
-	-- Подсказки от LSP
+  "https://github.com/mason-org/mason-lspconfig.nvim",
+  -- Fuzzy search
+  "https://github.com/ibhagwan/fzf-lua",
+  -- Подсказки от LSP
   {
     src = "https://github.com/saghen/blink.cmp",
-    version = vim.version.range("^1"),
-    data = {
-      event = { "BufNewFile", "BufReadPre" }
-    }
+    version = vim.version.range("^1")
   },
-	-- Красивый менеджер файлов
-	{
-    src = 'https://github.com/nvim-neo-tree/neo-tree.nvim', 
-    version = vim.version.range('3'),
-    data = {
-      cmd = { "Neotree" },
-      after = function()
-        require("neo-tree").setup {
-          window = { position = "right" },
-          close_if_last_window = true,
-        }
-      end
-    }
-  },
-	-- Помогает искать keybinds
+  -- Красивый менеджер файлов
   {
-    src = "https://github.com/folke/which-key.nvim",
-    data = {
-      event = { Events.BufNewFile, Events.BufReadPre }
-    },
-    after = function()
-      require('which-key').setup()
-    end
+    src = 'https://github.com/nvim-neo-tree/neo-tree.nvim',
+    version = vim.version.range('3')
   },
-	-- Зависимости neo-tree
+  -- Помогает искать keybinds
+  "https://github.com/folke/which-key.nvim",
+  -- Зависимости neo-tree
+  "https://github.com/MunifTanjim/nui.nvim",
+  "https://github.com/nvim-lua/plenary.nvim",
+  "https://github.com/nvim-mini/mini.icons",
+  -- Зависимость dashboard-nvim и neo-tree
   {
-    src = "https://github.com/MunifTanjim/nui.nvim",
-    data = {
-      cmd = { Commands.Neotree }
-    }
+    src = "https://github.com/nvim-tree/nvim-web-devicons",
+    version = vim.version.range('^3.3')
   },
-  {
-    src = "https://github.com/nvim-lua/plenary.nvim",
-    data = {
-      cmd = { Commands.Neotree }
-    }
-  },
-	-- Зависимость dashboard-nvim и neo-tree
-	{
-    src = "https://github.com/nvim-tree/nvim-web-devicons", 
-    version = vim.version.range('^3.3'),
-    data = {
-      cmd = { Commands.Neotree }
-    }
-  },
-  -- Темы редактора
-  {
-    src = "https://github.com/shatur/neovim-ayu",
-    data = {
-      colorscheme = "ayu"
-    }
-  },
-  { src = "https://github.com/folke/tokyonight.nvim", lazy = true },
-  { src = "https://github.com/navarasu/onedark.nvim", lazy = true },
+>>>>>>> Stashed changes
 }
 
 
 vim.pack.add {
   -- Lazy-загрузка плагинов
+<<<<<<< Updated upstream
   "https://github.com/lumen-oss/lz.n"
 }
 
 vim.pack.add(plugin_list, { load = require("lz.n").load })
+
+=======
+  "https://github.com/lumen-oss/lz.n",
+}
+vim.pack.add(plugins, { load = nil })
+
+require("lz.n").load {
+  {
+    "lualine.nvim",
+    lazy = false,
+    after = function()
+      require("lualine").setup {
+        sections = {
+          lualine_x = {"diagnostics", "filetype"},
+          lualine_y = {},
+        }
+      }
+    end
+  },
+  {
+    "nvim-treesitter",
+    event = { Commands.BufNewFile, Commands.BufReadPre }
+  },
+  {
+    "mason.nvim",
+    event = { Commands.BufNewFile, Commands.BufReadPre },
+    after = function()
+      require("mason").setup()
+    end,
+    priority = 55,
+  },
+  {
+    "nvim-lspconfig",
+    event = { Commands.BufNewFile, Commands.BufReadPre },
+    priority = 55,
+  },
+  {
+    "mason-lspconfig",
+    event = { Commands.BufNewFile, Commands.BufReadPre },
+    after = function()
+      require("mason-lspconfig").setup()
+    end
+  },
+  {
+    "blink.cmp",
+    event = { Commands.InsertEnter },
+    after = function()
+      require('plugins.blink-cmp')
+    end
+  },
+  {
+    "neo-tree",
+    event = { Commands.VimEnter },
+    after = function()
+      require("neo-tree").setup {
+        window = { position = "right" },
+        close_if_last_window = true,
+      }
+    end
+  },
+}
 

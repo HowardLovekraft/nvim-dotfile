@@ -1,12 +1,18 @@
-vim.opt.autoindent = true  -- Автоотступ
+vim.opt.autoindent = true          -- Автоотступ
 vim.opt.clipboard = "unnamedplus"  -- Общий буфер обмена с ОС
-vim.opt.colorcolumn = "80"
-vim.opt.nu = true  -- Номера строк
-vim.opt.relativenumber = true  -- Относительные номера строк
+vim.opt.colorcolumn = "80"         -- Soft-ограничитель строки
+vim.opt.nu = true                  -- Номера строк
+vim.opt.relativenumber = true      -- Относительные номера строк
 vim.opt.scrolloff = 6
-vim.opt.smartindent = true  -- Авто доп.отступ после if/while
-vim.opt.termguicolors = true  -- 24-bit цвета
+vim.opt.smartindent = true         -- Авто отступ после if/while
+vim.opt.termguicolors = true       -- 24-bit цвета
 vim.opt.winborder = "rounded"
+-- Шрифт в GUI
+vim.o.guifont = [[
+Hack Nerd Font,
+Symbols Nerd Font,
+Noto Mono
+]]
 
 -- Дефолтные значения отступов
 vim.opt.tabstop = 4
@@ -29,5 +35,3 @@ else  -- Linux :)
 	vim.g.python3_host_prog = python_venv .. 'bin/python'
 end
 
--- Тема редактора
-vim.cmd.colorscheme("ayu")
