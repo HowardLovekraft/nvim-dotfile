@@ -1,9 +1,15 @@
----@enum Commands
-local Commands = {
+---@enum Events
+local Events = {
   BufNewFile = "BufNewFile",
   BufReadPre = "BufReadPre",
   InsertEnter = "InsertEnter",
   VimEnter = "VimEnter",
+}
+
+---@enum Commands
+local Commands = {
+  FzfLua = "FzfLua",
+  WhichKey = "WhichKey"
 }
 
 
@@ -20,6 +26,7 @@ local plugins = {
   "https://github.com/mason-org/mason-lspconfig.nvim",
   -- Fuzzy search
   "https://github.com/ibhagwan/fzf-lua",
+  "https://github.com/windwp/nvim-autopairs",
   -- Подсказки от LSP
   {
     src = "https://github.com/saghen/blink.cmp",
@@ -41,19 +48,11 @@ local plugins = {
     src = "https://github.com/nvim-tree/nvim-web-devicons",
     version = vim.version.range('^3.3')
   },
->>>>>>> Stashed changes
 }
 
 
 vim.pack.add {
   -- Lazy-загрузка плагинов
-<<<<<<< Updated upstream
-  "https://github.com/lumen-oss/lz.n"
-}
-
-vim.pack.add(plugin_list, { load = require("lz.n").load })
-
-=======
   "https://github.com/lumen-oss/lz.n",
 }
 vim.pack.add(plugins, { load = nil })
@@ -63,48 +62,43 @@ require("lz.n").load {
     "lualine.nvim",
     lazy = false,
     after = function()
-      require("lualine").setup {
-        sections = {
-          lualine_x = {"diagnostics", "filetype"},
-          lualine_y = {},
-        }
-      }
+      require('plugins.lualine')
     end
   },
   {
     "nvim-treesitter",
-    event = { Commands.BufNewFile, Commands.BufReadPre }
+    event = { Events.BufNewFile, Events.BufReadPre }
   },
   {
     "mason.nvim",
-    event = { Commands.BufNewFile, Commands.BufReadPre },
+    event = { Events.VimEnter },
     after = function()
       require("mason").setup()
     end,
-    priority = 55,
+    priority = 52,
   },
   {
     "nvim-lspconfig",
-    event = { Commands.BufNewFile, Commands.BufReadPre },
-    priority = 55,
+    event = { Events.VimEnter },
+    priority = 52,
   },
   {
     "mason-lspconfig",
-    event = { Commands.BufNewFile, Commands.BufReadPre },
+    event = { Events.BufNewFile, Events.BufReadPre },
     after = function()
-      require("mason-lspconfig").setup()
+      require("plugins.mason-lspconfig")
     end
   },
   {
     "blink.cmp",
-    event = { Commands.InsertEnter },
+    event = { Events.InsertEnter },
     after = function()
       require('plugins.blink-cmp')
     end
   },
   {
     "neo-tree",
-    event = { Commands.VimEnter },
+    event = { Events.VimEnter },
     after = function()
       require("neo-tree").setup {
         window = { position = "right" },
@@ -112,5 +106,26 @@ require("lz.n").load {
       }
     end
   },
+  {
+    "which-key",
+    cmd = Commands.WhichKey,
+    after = function()
+      require('plugins.which-key')
+    end
+  },
+  {
+    "fzf-lua",
+    cmd = Commands.FzfLua,
+    after = function()
+      require('plugins.fzf-lua')
+    end
+  },
+  {
+    "nvim-autopairs",
+    event = { Events.InsertEnter },
+    after = function()
+      require("nvim-autopairs").setup()
+    end
+  }
 }
 

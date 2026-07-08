@@ -7,12 +7,9 @@ vim.opt.scrolloff = 6
 vim.opt.smartindent = true         -- Авто отступ после if/while
 vim.opt.termguicolors = true       -- 24-bit цвета
 vim.opt.winborder = "rounded"
+
 -- Шрифт в GUI
-vim.o.guifont = [[
-Hack Nerd Font,
-Symbols Nerd Font,
-Noto Mono
-]]
+vim.o.guifont = "Hack Nerd Font Mono, Symbols Nerd Font"
 
 -- Дефолтные значения отступов
 vim.opt.tabstop = 4

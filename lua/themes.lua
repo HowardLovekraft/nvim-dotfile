@@ -1,6 +1,6 @@
 assert(
-	package.loaded["plugins"],
-	"Load themes after plugins!"
+	package.loaded["lz.n"],
+	"Load lazy-loading lib (lz.n) before themes!"
 )
 
 ---@enum Theme
@@ -9,8 +9,9 @@ local Theme = {
   TOKYONIGHT = "tokyonight",
   ONEDARK = "onedark"
 }
+
+-- Темы редактора
 local themes = {
-	-- Темы редактора
 	"https://github.com/folke/tokyonight.nvim",
 	"https://github.com/shatur/neovim-ayu",
 	"https://github.com/navarasu/onedark.nvim",
@@ -35,4 +36,3 @@ require("lz.n").load {
 
 -- Установка темы
 vim.cmd.colorscheme(Theme.AYU)
-

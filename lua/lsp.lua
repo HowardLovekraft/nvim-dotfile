@@ -8,13 +8,8 @@ vim.lsp.config('ruff', {
 	capabilities = capabilities,
 })
 
--- LSP providers
-vim.lsp.enable {
-	"lua_ls",
-	"clangd",
-	"ruff",
-	"basedpyright",
-}
+-- LSP providers -> mason-lspconfig.lua
+
 -- Add inline errors and warnings
 vim.diagnostic.config{ virtual_text = true }
 
