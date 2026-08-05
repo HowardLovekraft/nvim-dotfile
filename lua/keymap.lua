@@ -19,16 +19,15 @@ vim.keymap.set(
   { desc = "Open popup with hover documentation" }
 )
 
--- Более удобный выход из Terminal Mode
-vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
-
-
--- Кеймап на формат
-vim.keymap.set(
-  "n", "<Leader>fo", "<cmd>lua require('conform').format()<CR>",
-  { desc = "Format the buffer via conform" }
+-- Удобный выход из Terminal Mode
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]],
+  { noremap = true, silent = true, desc = 'Exit terminal mode' }
 )
 
--- Удобный выход из Terminal Mode
-local opts = { noremap = true, silent = true }
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts)
+
+-- Форматтирование от conform
+vim.keymap.set(
+  "n", "<Leader>fo",
+  "<cmd>lua require('conform').format{ lsp_fallback = true }<CR>",
+  { desc = "Format the buffer via conform" }
+)

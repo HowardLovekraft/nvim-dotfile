@@ -1,5 +1,4 @@
 local function on_attach(client, _)
-  client.server_capabilities.hoverProvider = true
   client.server_capabilities.documentFormattingProvider = false
 end
 

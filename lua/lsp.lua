@@ -7,11 +7,7 @@ vim.lsp.config('basedpyright', {
 })
 
 vim.lsp.config('ruff', {
-  init_options = {
-    settings = {
-      capabilities = capabilities,
-    }
-  }
+  capabilities = capabilities,
 })
 
 -- Включаем inline варнинги и ошибки
