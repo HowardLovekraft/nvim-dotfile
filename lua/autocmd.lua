@@ -1,5 +1,6 @@
 local new_ag = vim.api.nvim_create_augroup
 local new_autocmd = vim.api.nvim_create_autocmd
+local new_cmd = vim.api.nvim_create_user_command
 local FILETYPE = "FileType"
 
 local highlight_group = new_ag('YankHighlight', { clear = true })
@@ -17,7 +18,7 @@ new_autocmd('TextYankPost', {
 -- Настройки отступов для языков
 -- Lua + JSON, YAML
 new_autocmd(FILETYPE, {
-	pattern = {"lua", "json", "yaml"},
+	pattern = { "lua", "json", "yaml" },
 	callback = function()
 		vim.opt_local.tabstop = 2
 		vim.opt_local.shiftwidth = 2
@@ -27,7 +28,7 @@ new_autocmd(FILETYPE, {
 })
 -- C/C++, Python, Rust
 new_autocmd(FILETYPE, {
-	pattern = {"c", "cpp", "python", "rust"},
+	pattern = { "asm", "nasm", "c", "cpp", "h", "hpp", "python", "rust" },
 	callback = function()
 		vim.opt_local.tabstop = 4       -- Пробелы в одном табе
 		vim.opt_local.shiftwidth = 4    -- Пробелы в автоотступе
@@ -37,7 +38,7 @@ new_autocmd(FILETYPE, {
 })
 -- Go
 new_autocmd(FILETYPE, {
-	pattern = {"go"},
+	pattern = { "go" },
 	callback = function()
 		vim.opt_local.tabstop = 4        -- Пробелы в одном табе
 		vim.opt_local.shiftwidth = 4     -- Пробелы в автоотступе
@@ -45,3 +46,16 @@ new_autocmd(FILETYPE, {
 		vim.opt_local.expandtab = false  -- Табы не конвертируются в пробелы
 	end
 })
+
+-- Выводит форматтер для текущего буфера
+new_cmd(
+  'GetFormatters',
+  function()
+    local current_clients = vim.lsp.get_clients{ bufnr=0, method="textDocument/formatting" }
+    for _, c in ipairs(current_clients) do
+      print("Formatter: " .. c.name)
+    end
+  end,
+  { desc = "Show available formatter" }
+)
+

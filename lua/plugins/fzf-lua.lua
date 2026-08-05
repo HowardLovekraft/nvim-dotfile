@@ -1,5 +1,12 @@
 local actions = require('fzf-lua.actions')
-require('fzf-lua').setup {
+local fzf = require('fzf-lua')
+
+-- Кеймапы
+vim.keymap.set("n", "<leader>fz", fzf.files)
+vim.keymap.set("n", "<leader>/", fzf.live_grep)
+
+-- Сетап
+fzf.setup {
     winopts = { backdrop = 85 },
     keymap = {
         builtin = {
@@ -24,3 +31,4 @@ require('fzf-lua').setup {
         }
     }
 }
+

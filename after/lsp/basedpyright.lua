@@ -1,5 +1,6 @@
 local function on_attach_basedpyright(client, _)
   client.server_capabilities.hoverProvider = true
+  client.server_capabilities.documentFormattingProvider = false
 end
 
 return {

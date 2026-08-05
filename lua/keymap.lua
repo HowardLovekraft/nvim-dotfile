@@ -1,28 +1,21 @@
--- Открывает Neotree
-vim.keymap.set("n", "<leader>e", "<Cmd>Neotree<CR>")
-
--- Кеймапы для fzf
-local fzf = require("fzf-lua")
-vim.keymap.set("n", "<leader>fs", fzf.files)
-vim.keymap.set("n", "<leader>/", fzf.live_grep)
-
 -- Кеймапы для LSP
-local opts = { noremap = true, silent = true }
+vim.keymap.set(
+  "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>",
+  { desc = "Go to Definition of the name under cursor" }
+)
+vim.keymap.set(
+  "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>",
+  { desc = "Show inline diagnostic message" }
+)
 
-vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-vim.keymap.set("n", "<Leader>fo", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
+-- Более удобный выход из Terminal Mode
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
 
 
--- Кеймап для which-key
-vim.keymap.set("n", "<leader>?",
-  function()
-    require("which-key").show { global = false }
-  end,
-  {
-    noremap = true,
-    silent = true,
-    desc = "Buffer Local Keymaps (which-key)",
-  }
+-- Кеймап на формат
+vim.keymap.set(
+  "n", "<Leader>fo", "<cmd>lua require('conform').format()<CR>",
+  { desc = "Format the buffer via conform" }
 )
 
 -- Удобный выход из Terminal Mode
