@@ -48,6 +48,8 @@ local plugins = {
     src = "https://github.com/nvim-tree/nvim-web-devicons",
     version = vim.version.range('^3.3')
   },
+  -- Отдельный форматтер
+  "https://github.com/stevearc/conform.nvim"
 }
 
 
@@ -68,6 +70,19 @@ require("lz.n").load {
   {
     "nvim-treesitter",
     event = { Events.BufNewFile, Events.BufReadPre }
+  },
+  {
+    "conform.nvim",
+    event = { Events.BufNewFile, Events.BufReadPre },
+    after = function()
+      require('conform').setup {
+        opts = {
+          formatters_by_ft = {
+            python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
+          }
+        }
+      }
+    end,
   },
   {
     "mason.nvim",
