@@ -5,8 +5,6 @@ require("themes")   -- Theme selection
 require("lsp")      -- LSP settings (more - at after/lsp)
 require("config")   -- Neovim flags
 require("autocmd")  -- Autocommands
-require("setups")   -- Plugin settings
-require("lsp")      -- LSP settings (more - at after/lsp)
 require("keymap")   -- Keymaps for plugins' actions
 
 local end_time = vim.uv.hrtime()
@@ -14,7 +12,7 @@ local end_time = vim.uv.hrtime()
 -- Приветственное сообщение
 print(
   string.format(
-    "My Neovim setup! Start up time: %.2f ms",
+    "L0VECR4FT Neovim setup! Start up time: %.2f ms",
     (end_time - start_time) / 1e6
   )
 )

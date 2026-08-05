@@ -2,7 +2,6 @@ local new_ag = vim.api.nvim_create_augroup
 local new_autocmd = vim.api.nvim_create_autocmd
 local new_cmd = vim.api.nvim_create_user_command
 local FILETYPE = "FileType"
-
 local highlight_group = new_ag('YankHighlight', { clear = true })
 
 
@@ -10,7 +9,7 @@ local highlight_group = new_ag('YankHighlight', { clear = true })
 new_autocmd('TextYankPost', {
     pattern = '*',
     callback = function()
-        vim.hl.hl_op({ timeout = 170 })
+        vim.hl.hl_op{ timeout = 170 }
     end,
     group = highlight_group,
 })
@@ -26,7 +25,7 @@ new_autocmd(FILETYPE, {
 		vim.opt_local.expandtab = true
 	end
 })
--- C/C++, Python, Rust
+-- ASM, C/C++, Python, Rust
 new_autocmd(FILETYPE, {
 	pattern = { "asm", "nasm", "c", "cpp", "h", "hpp", "python", "rust" },
 	callback = function()
@@ -46,16 +45,4 @@ new_autocmd(FILETYPE, {
 		vim.opt_local.expandtab = false  -- Табы не конвертируются в пробелы
 	end
 })
-
--- Выводит форматтер для текущего буфера
-new_cmd(
-  'GetFormatters',
-  function()
-    local current_clients = vim.lsp.get_clients{ bufnr=0, method="textDocument/formatting" }
-    for _, c in ipairs(current_clients) do
-      print("Formatter: " .. c.name)
-    end
-  end,
-  { desc = "Show available formatter" }
-)
 

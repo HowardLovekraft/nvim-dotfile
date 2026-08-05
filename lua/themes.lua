@@ -3,6 +3,13 @@ assert(
 	"Load lazy-loading lib (lz.n) before themes!"
 )
 
+--- Returns GitHub repository URL
+---@param repo string Repository name
+---@return string
+local function gh_link(repo)
+  return "https://github.com/" .. repo
+end
+
 ---@enum Theme
 local Theme = {
   AYU = "ayu",
@@ -12,9 +19,9 @@ local Theme = {
 
 -- Темы редактора
 local themes = {
-	"https://github.com/folke/tokyonight.nvim",
-	"https://github.com/shatur/neovim-ayu",
-	"https://github.com/navarasu/onedark.nvim",
+	gh_link("folke/tokyonight.nvim"),
+	gh_link("shatur/neovim-ayu"),
+	gh_link("navarasu/onedark.nvim"),
 }
 
 vim.pack.add(themes, { load = nil })

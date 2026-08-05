@@ -1,15 +1,19 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.general.positionEncodings = { "utf-16" }
 
+-- Фикс для парной работы basedpyright + ruff
 vim.lsp.config('basedpyright', {
 	capabilities = capabilities,
 })
+
 vim.lsp.config('ruff', {
-	capabilities = capabilities,
+  init_options = {
+    settings = {
+      capabilities = capabilities,
+    }
+  }
 })
 
--- LSP providers -> mason-lspconfig.lua
-
--- Add inline errors and warnings
-vim.diagnostic.config{ virtual_text = true }
+-- Включаем inline варнинги и ошибки
+vim.diagnostic.config { virtual_text = true }
 
