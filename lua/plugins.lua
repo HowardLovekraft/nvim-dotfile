@@ -46,26 +46,27 @@ local plugins = {
 vim.pack.add(plugins, { load = nil })
 
 vim.pack.add {
-  -- Иконки. Зависимость dashboard-nvim и neo-tree
-  {
-    src = gh_link("nvim-tree/nvim-web-devicons"),
-    version = vim.version.range('^3.3')
-  },
+  -- Иконки. Зависимость lualine и neo-tree
+  gh_link("nvim-tree/nvim-web-devicons"),
   -- Lazy-загрузчик плагинов
   gh_link("lumen-oss/lz.n")
 }
 
 -- Lazy-настройки плагинов
-require("plugins.treesitter")
-require("plugins.lualine")
--- nvim-lspconfig + mason.nvim + mason-lspconfig
-require("plugins.mason-lspconfig")
-require("plugins.conform")
--- neotree + nvim-web-devicons
-require("plugins.neotree")
-require("plugins.blink-cmp")
-require("plugins.which-key")
-require("plugins.fzf-lua")
-require("plugins.nvim-autopairs")
-require("plugins.cord-nvim")
+local plugin_configs = {
+  "plugins.blink-cmp",
+  "plugins.conform",
+  "plugins.cord-nvim",
+  "plugins.fzf-lua",
+  "plugins.lualine",
+  -- nvim-lspconfig + mason.nvim + mason-lspconfig
+  "plugins.mason-lspconfig",
+  "plugins.neotree",
+  "plugins.nvim-autopairs",
+  "plugins.treesitter",
+  "plugins.which-key",
+}
+for _, plugin in ipairs(plugin_configs) do
+  require(plugin)
+end
 
