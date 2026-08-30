@@ -9,6 +9,10 @@
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "cord.nvim": {
+      "rev": "85f295e43550bc968b66d95d8bfd6e12bb17df08",
+      "src": "https://github.com/vyfor/cord.nvim"
+    },
     "dashboard-nvim": {
       "rev": "f787e3462c2ee2b6117b17c1aa4ddf66cb6f57fe",
       "src": "https://github.com/nvimdev/dashboard-nvim"

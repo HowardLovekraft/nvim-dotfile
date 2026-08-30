@@ -19,9 +19,10 @@ vim.opt.softtabstop = 4
 -- Клавиша-лидер
 vim.g.mapleader = " "
 
--- Отключаем Node.js and Perl провайдеров
+-- Отключаем ненужных провайдеров
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
 
 -- Получаем провайдера Python
 local home = vim.fn.expand('~/')

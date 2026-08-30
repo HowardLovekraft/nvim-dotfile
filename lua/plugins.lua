@@ -36,19 +36,23 @@ local plugins = {
   gh_link("MunifTanjim/nui.nvim"),
   gh_link("nvim-lua/plenary.nvim"),
   gh_link("nvim-mini/mini.icons"),
-  -- Зависимость dashboard-nvim и neo-tree
-  {
-    src = gh_link("nvim-tree/nvim-web-devicons"),
-    version = vim.version.range('^3.3')
-  },
   -- Отдельный форматтер
-  gh_link("stevearc/conform.nvim")
+  gh_link("stevearc/conform.nvim"),
+  -- Интеграция Discord Rich Presence
+  gh_link("vyfor/cord.nvim")
 }
 
 -- Установка плагинов
 vim.pack.add(plugins, { load = nil })
+
 vim.pack.add {
-  gh_link("lumen-oss/lz.n") -- Lazy-загрузчик плагинов
+  -- Иконки. Зависимость dashboard-nvim и neo-tree
+  {
+    src = gh_link("nvim-tree/nvim-web-devicons"),
+    version = vim.version.range('^3.3')
+  },
+  -- Lazy-загрузчик плагинов
+  gh_link("lumen-oss/lz.n")
 }
 
 -- Lazy-настройки плагинов
@@ -57,9 +61,11 @@ require("plugins.lualine")
 -- nvim-lspconfig + mason.nvim + mason-lspconfig
 require("plugins.mason-lspconfig")
 require("plugins.conform")
+-- neotree + nvim-web-devicons
 require("plugins.neotree")
 require("plugins.blink-cmp")
 require("plugins.which-key")
 require("plugins.fzf-lua")
 require("plugins.nvim-autopairs")
+require("plugins.cord-nvim")
 

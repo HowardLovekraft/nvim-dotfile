@@ -8,6 +8,7 @@ M.Events = {
   BufReadPre = "BufReadPre",
   InsertEnter = "InsertEnter",
   VimEnter = "VimEnter",
+  UIEnter = "UIEnter"
 }
 
 M.LZN_DEFAULT_PRIORITY = 50

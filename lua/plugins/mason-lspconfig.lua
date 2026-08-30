@@ -3,11 +3,12 @@ local Events = utils.Events
 
 ---@enum LangServers
 local LangServers = {
-  "lua_ls",  -- Lua
-  "basedpyright",  -- Python
-  "ruff",  -- Python
-  "clangd",  -- C++
+  "lua_ls",         -- Lua
+  "basedpyright",   -- Python
+  "ruff",           -- Python
+  "clangd",         -- C++
   "rust_analyzer",  -- Rust
+  "tinymist",       -- Typst
 }
 
 local lazy = require("lz.n")
